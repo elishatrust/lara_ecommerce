@@ -1,2 +1,2 @@
-# lara_ecommerce
+# lara-ecommerce
  
