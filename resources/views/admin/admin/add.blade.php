@@ -22,20 +22,17 @@
     </div>
     <!-- /.content-header -->
 
-    
-    @include('admin.layouts._message')
-
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
 
         <div class="row">
-          <div class="col-md-12 col-12">            
+          <div class="col-md-12 col-6">            
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Admin Lists
                 </h3>
-                <a href="#"  class="float-right btn btn-sm btn-primary" 
+                <a href="{{ url('admin/admin/add')}} "  class="float-right btn btn-sm btn-primary" 
                     data-toggle="modal" data-target="#addNewAdminModal"
                     style="margin-right:2%;">Add New Admin</a>
                 
@@ -53,27 +50,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($getRecord as $item)
                     <tr>
-                      <td>{{ $item->id}}</td>
-                      <td>{{ $item->name}}</td>
-                      <td>{{ $item->email}}</td>
-                      <td>
-                        @if ($item->status==0)
-                            <span class="badge bg-primary">Active</span>
-                        @endif
-                        @if ($item->status==1)
-                            <span class="badge bg-warning">Inactive</span>
-                        @endif
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <a href="{{url('admin/admin/edit_admin/'.$item->id)}}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                          <a onclick="return confirm('Do You Want to Delete This Record ?')?window.location.href='{{url('admin/admin/delete_admin/'.$item->id)}}':false;" href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                        </div>
-                      </td>
+                      <td>1.</td>
+                      <td>Update software</td>
+                      <td>Clean database</td>
+                      <td><span class="badge bg-warning">70%</span></td>
+                      <td><span class="badge bg-primary">30%</span></td>
                     </tr>
-                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -113,7 +96,6 @@
         </div>
         <div class="modal-body">
             <form id="quickForm" method="POST" action="{{url('admin/admin/add')}}">
-                {{ csrf_field() }}
                 <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" name="name" class="form-control" placeholder="Enter name">
@@ -128,14 +110,14 @@
                 </div>
                 <div class="form-group">
                 <label for="">Status</label>
-                <select name="status" class="form-control">
+                <section name="status">
                     <option value="0">Active</option>
                     <option value="1">Inactive</option>
-                </select>
+                </section>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="save_btn()" class="btn btn-primary">Save </button>
+                    <button type="submit" class="btn btn-primary">Save </button>
                 </div>
            
             </form>            
@@ -143,29 +125,6 @@
       </div>
     </div>
   </div>
-
-
-  {{-- @section('script')
-      
-  <script>
-    function save_btn()
-    {
-      var name = $('.name').val();
-      var email = $('.email').val();
-      var password = $('.password').val();
-      var status = $('.status').val();
-
-      vard formData = new formData();
-      formData.append('name: ', name);
-      formData.append('email: ', email);
-      formData.append('password: ', password);
-      formData.append('status: ', status);
-
-      alert('It work');
-      //console.log(formData);
-    }
-
-  </script> --}}
 
 
 @endsection

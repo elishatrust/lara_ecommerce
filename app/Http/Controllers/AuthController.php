@@ -12,11 +12,12 @@ class AuthController extends Controller
     
     public function index()
     {
+        $data['title'] = 'LOGIN';
         if(!empty(Auth::check()) && Auth::user()->is_admin ==0)
         {
             return redirect('admin/dashboard');
         }else{
-            return view('admin.auth.login');
+            return view('admin.auth.login', $data);
         }
     }
 
