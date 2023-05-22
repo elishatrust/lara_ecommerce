@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LOGIN | ECOMMERCE</title>
+  <title>{{ !empty($title) ? $title : " " }} | E-Commerce</title>
 
   <link rel="icon" href="{{ url('public/assets/dist/img/AdminLTELogo.png')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -16,6 +16,17 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ url('public/assets/dist/css/adminlte.min.css') }}">
 </head>
+
+<Style>
+  body{
+    background: url('public/assets/dist/img/photo2.png');
+    background-attachment: fixed;
+    backface-visibility: visible;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+  }
+</Style>
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
