@@ -12,7 +12,8 @@ class FrontController extends Controller
      */
     public function index()
     {
-        return view('front.index');
+        $data['title'] = 'E-Commerce';
+        return view('front.index', $data );
     }
 
     /**

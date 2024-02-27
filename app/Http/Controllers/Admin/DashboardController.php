@@ -3,27 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+
+    public function __construct()
+    {
+        $user_model = new User;
+    }
     public function dashboard()
     {
         $data['title'] = 'Dashboard';
         return view('admin.dashboard', $data);
     }
 
-    public function admin()
-    {
-        $data['title'] = 'Admin';
-        return view('admin.admin.list', $data);
-    }
-
-    public function users()
-    {
-        $data['title'] = 'Users';
-        return view('admin.users.list', $data);
-    }
 
     public function products()
     {

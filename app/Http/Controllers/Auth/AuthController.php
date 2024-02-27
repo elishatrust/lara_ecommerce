@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+
     public function index()
     {
         $data['title'] = 'LOGIN';
-        if(!empty(Auth::check()) && Auth::user()->is_admin ==0)
+        if(!empty(Auth::check()) && Auth::user()->role ==1)
         {
             return redirect('admin/dashboard');
         }else{
@@ -27,9 +31,11 @@ class AuthController extends Controller
         //dd($request->all());
         $remember = !empty($request->remember) ? true : false;
         if(Auth::attempt([
-            'email' => $request->email, 
-            'password' => $request->password, 
-            'is_admin'=>'0'], $remember))
+            'email' => $request->email,
+            'password' => $request->password,
+            'status' => 0,
+            'archive' => 0,
+            'role'=>'1'], $remember))
         {
             // Pass
             return redirect('admin/dashboard');
@@ -46,12 +52,10 @@ class AuthController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function userProfile()
     {
-        //
+        $data['title'] = 'My Profile';
+        return view('admin.profile.index', $data);
     }
 
     /**
