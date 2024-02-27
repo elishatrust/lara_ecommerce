@@ -1,6 +1,24 @@
 # Laravel 10x E-commerce Project
 
+# Parts Involved
+1. Frontend
+2. Backend
+
+# Technology Used
+1. Laravel Framework
+2. Javascript (jQuery Library , AJAX)
+4. Bootstrap
+5. Livewire
+6. Sweetalert2
+7. Composer
+
+# System Users
+1. Admin
+2. Client
+3. Seller
+
 # Project RoadMap
+
 # Frontend
 
 1. Home Page Slider

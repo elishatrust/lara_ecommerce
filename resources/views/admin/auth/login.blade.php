@@ -19,12 +19,12 @@
 
 <Style>
   body{
-    background: url('public/assets/dist/img/photo2.png');
+    background: url('public/images/bg-3.jpg');
     background-attachment: fixed;
     backface-visibility: visible;
     background-size: cover;
     background-repeat: no-repeat;
-    
+
   }
 </Style>
 <body class="hold-transition login-page">
@@ -35,14 +35,14 @@
       <a href="javascript:void(0)" class="h2"><b>Login</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to Start Your Session</p>
+      <p class="login-box-msg"></p>
 
       @include('admin.layouts._message')
 
       <form action="" method="post">
-         
+
         {{ csrf_field() }}
-        
+
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="E-Mail" name="email" required>
           <div class="input-group-append">
@@ -77,7 +77,7 @@
       </form>
 
       <p class="mb-1">
-        <a href="javascript:void(0)">I forgot my password</a>
+        {{-- <a href="javascript:void(0)">I forgot my password</a> --}}
       </p>
     </div>
     <!-- /.card-body -->

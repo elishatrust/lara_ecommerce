@@ -12,8 +12,6 @@
   <link rel="stylesheet" href="{{ url('public/assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ url('public/assets/dist/css/adminlte.min.css') }}">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ url('public/assets/fontawesome-free/css/all.min.css') }}">
@@ -21,11 +19,14 @@
   <link rel="stylesheet" href="{{ url('public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url('public/assets/dist/css/adminlte.min.css') }}">
+
 
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-        
+
     @include('admin.layouts.header')
     @include('admin.layouts.sidebar')
     @yield('content')
@@ -54,6 +55,10 @@
 <script src="{{ url('public/assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ url('public/assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ url('public/assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+<!-- AdminLTE App -->
+<script src="{{ url('public/assets/dist/js/adminlte.min.js') }}"></script>
+
 <!-- Page specific script -->
 <script>
   $(function () {
