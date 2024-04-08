@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $table = 'product';
+    protected $table = 'products';
 
     static public function checkSlug($slug)
     {
@@ -17,10 +17,21 @@ class Product extends Model
 
     static public function getProduct()
     {
-        return self::select('product.*','users.name as created_by_name')
-                ->join('users','users.id','=','product.created_by')
-                ->where('product.archive','=',0)
-                ->orderBy('product.id','desc')
+        return self::select('products.*','users.name as created_by_name')
+                ->join('users','users.id','=','products.created_by')
+                ->where('products.archive','=',0)
+                ->orderBy('products.id','desc')
                 ->get();
+                // ->paginate(2);
     }
+
+    static public function getSingle($id)
+    {
+        return self::find($id);
+    }
+    public static function getById($id)
+    {
+        return static::where('id', $id)->update(['archive' => 1]);
+    }
+
 }

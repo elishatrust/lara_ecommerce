@@ -65,9 +65,10 @@
                 </ul>
                 </div>
                 <div class="card-body">
+                @include('admin.layouts._message')
                 <div class="tab-content">
                     <div class="tab-pane active" id="activity">
-                        <form class="form-horizontal" method="post">
+                        <form class="form-horizontal" action="{{ url('admin/user/update-profile/'.Auth::user()->id) }}" method="post">
                             <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">Full name</label>
                             <div class="col-sm-10">
@@ -95,7 +96,7 @@
                     </div>
 
                     <div class="tab-pane" id="settings">
-                        <form class="form-horizontal" action="" method="POST">
+                        <form class="form-horizontal" action="{{ url('admin/user/update-password/'.Auth::user()->id) }}" method="POST">
                             <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">Current Password</label>
                             <div class="col-sm-10">

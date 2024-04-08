@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('admin/dashboard')}}" class="brand-link">
-      <img src="{{ url('public/assets/dist/img/AdminLTELogo.png')}}" alt="E-SHOP Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">LARA <span class="px-3">e-SHOP</span></span>
+    <a href="{{ url('admin/dashboard')}}" class="brand-link text-center">
+      {{-- <img src="{{ url('public/assets/dist/img/AdminLTELogo.png')}}" alt="E-COMMERCE" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+      <span class="brand-text font-weight-bold">LARA <span class="pr-3">E-COMMERCE</span></span>
     </a>
 
   <!-- Sidebar -->
@@ -49,7 +49,7 @@
 
         <li class="nav-item">
           <a href="{{ url('admin/category/list')}}" class="nav-link @if (Request::segment(2)=='category') active  @endif ">
-            <i class="nav-icon fas fa-list-alt"></i>
+            <i class="nav-icon fas fa-circle"></i>
             <p>
               Category
             </p>
@@ -58,7 +58,7 @@
 
         <li class="nav-item">
             <a href="{{ url('admin/sub_category/list')}}" class="nav-link @if (Request::segment(2)=='sub_category') active  @endif ">
-              <i class="nav-icon fas fa-list-alt"></i>
+              <i class="nav-icon fas fa-circle"></i>
               <p>
                 Sub Category
               </p>
@@ -67,7 +67,7 @@
 
         <li class="nav-item">
             <a href="{{ url('admin/brand/list')}}" class="nav-link @if (Request::segment(2)=='brand') active  @endif ">
-              <i class="nav-icon fas fa-ball"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 Brand
               </p>
@@ -75,14 +75,22 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ url('admin/product/list')}}" class="nav-link @if (Request::segment(2)=='products') active  @endif ">
-            <i class="nav-icon fas fa-th"></i>
+          <a href="{{ url('admin/product/list')}}" class="nav-link @if (Request::segment(2)=='product') active  @endif ">
+            <i class="nav-icon fas fa-shopping-cart"></i>
             <p>
               Products
             </p>
           </a>
         </li>
 
+        <li class="nav-item">
+            <a href="{{ url('admin/color/list')}}" class="nav-link @if (Request::segment(2)=='color') active  @endif ">
+              <i class="nav-icon fas fa-brush"></i>
+              <p>
+                Colors
+              </p>
+            </a>
+        </li>
 
         <li class="nav-header">MISCELLANEOUS</li>
         <li class="nav-item">

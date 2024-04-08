@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Brand;
+use App\Models\Color;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -41,7 +45,38 @@ class ProductController extends Controller
             $product->save();
         }
 
-        return redirect('admin/product/edit'.$product->id)->with('success', 'Product added successfully');
+        return redirect('admin/product/edit/'.Crypt::encrypt($product->id))->with('success', 'Product added successfully');
+    }
+
+    public function edit($id)
+    {
+        $productID = Crypt::decrypt($id);
+        $product = Product::getSingle($productID);
+
+        $data['brand'] = Brand::getActiveBrand();
+        $data['color'] = Color::getActiveColor();
+        $data['category'] = Category::getActiveCategory();
+
+        if(!empty($product))
+        {
+            $data['title'] = 'Edit Product';
+            $data['product'] = $product;
+            return view('admin.product.edit', $data);
+        }else{
+
+            return redirect()->back()->with('error', 'Product not found');
+        }
+    }
+
+    public function delete($id)
+    {
+        $productID = Crypt::decrypt($id);
+        $product = Product::getById($productID);
+        if ($product) {
+            return redirect()->back()->with('success', 'Product deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'Product not found');
+        }
     }
 
 }

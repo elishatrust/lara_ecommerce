@@ -11,24 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
-            $table->unsignedBigInteger('category_id')->default(0);
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('category');
-            $table->unsignedBigInteger('sub_category_id')->default(0);
+
+            $table->unsignedBigInteger('sub_category_id')->nullable();
             $table->foreign('sub_category_id')->references('id')->on('sub_category');
-            $table->string('brand_id')->nullable()->default(0);
-            $table->string('old_price')->nullable();
-            $table->string('price')->nullable();
+
+            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->foreign('brand_id')->references('id')->on('brand');
+            $table->string('old_price')->nullable()->default(0);
+            $table->string('price')->nullable()->default(0);
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->string('additional_info')->nullable();
             $table->string('shipping_returns')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('archive')->default(0);
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -39,6 +43,6 @@ return new class extends Migration
     public function down(): void
     {
 
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('products');
     }
 };

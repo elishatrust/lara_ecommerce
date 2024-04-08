@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,12 @@ Route::get('/', [FrontController::class, 'index']);
 
 ## Authentication
 Route::get('admin/', [AuthController::class, 'index']);
-Route::post('admin/', [AuthController::class, 'login']);
+Route::post('admin/', [AuthController::class, 'login'])->name('login');
+
 Route::get('admin/logout', [AuthController::class, 'logout']);
 Route::get('admin/user/profile', [AuthController::class, 'userProfile']);
+Route::post('admin/user/update-profile/{id}', [AuthController::class, 'updateProfile']);
+Route::post('admin/user/update-password/{id}', [AuthController::class, 'updatePassword']);
 
 Route::group(['middleware' => 'admin'], function(){
 
@@ -46,6 +50,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/sub_category/edit/{id}', [SubCategoryController::class, 'edit']);
     Route::post('admin/sub_category/edit/{id}', [SubCategoryController::class, 'update']);
     Route::get('admin/sub_category/delete/{id}', [SubCategoryController::class, 'delete']);
+    Route::post('admin/get_subCategory',[SubCategoryController::class, 'getSubCategory']);
+
 
     ## Brand
     Route::get('admin/brand/list', [BrandController::class, 'list']);
@@ -62,6 +68,14 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
     Route::post('admin/product/edit/{id}', [ProductController::class, 'update']);
     Route::get('admin/product/delete/{id}', [ProductController::class, 'delete']);
+
+    ## Color
+    Route::get('admin/color/list', [ColorController::class, 'list']);
+    Route::get('admin/color/add', [ColorController::class, 'add']);
+    Route::post('admin/color/add', [ColorController::class, 'save']);
+    Route::get('admin/color/edit/{id}', [ColorController::class, 'edit']);
+    Route::post('admin/color/edit/{id}', [ColorController::class, 'update']);
+    Route::get('admin/color/delete/{id}', [ColorController::class, 'delete']);
 
     ## Users
     Route::get('admin/users/list', [UserController::class, 'list']);

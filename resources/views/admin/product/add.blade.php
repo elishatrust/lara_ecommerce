@@ -24,24 +24,16 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{$title}}</h3>
+                            <h3 class="card-title"><i class="far fa-plus-square pr-2"></i> {{$title}}</h3>
                         </div>
                         <form action="" method="post">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label>Title</label>
+                                        <label>Title <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control rounded-0" id="title" name="title" value="{{ old('title') }}" placeholder="Enter Title" required="">
                                     </div>
-                                    {{-- <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Status</label>
-                                        <select name="status" id="status" class="form-control rounded-0" required="">
-                                            <option value="" disabled {{ old('status') === null ? 'selected' : '' }}>Select</option>
-                                            <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Active</option>
-                                            <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Inactive</option>
-                                        </select>
-                                    </div> --}}
                                 </div>
                             </div>
 

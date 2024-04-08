@@ -29,22 +29,24 @@
 </Style>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
       <a href="javascript:void(0)" class="h2"><b>Login</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg"></p>
+      <p class="login-box-msg">Login to Your Account</p>
 
       @include('admin.layouts._message')
 
       <form action="" method="post">
+        {{-- {{ csrf_field() }} --}}
+        {{-- <div id="showMessage"></div> --}}
+        {{-- <form id="loginForm"> --}}
 
-        {{ csrf_field() }}
+            @csrf
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="E-Mail" name="email" required>
+          <input type="email" class="form-control" placeholder="E-Mail" name="email" id="email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -52,7 +54,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password" required>
+          <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -68,29 +70,67 @@
               </label>
             </div>
           </div>
-          <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
-          <!-- /.col -->
         </div>
       </form>
-
-      <p class="mb-1">
-        {{-- <a href="javascript:void(0)">I forgot my password</a> --}}
-      </p>
     </div>
-    <!-- /.card-body -->
   </div>
-  <!-- /.card -->
 </div>
-<!-- /.login-box -->
 
-<!-- jQuery -->
+
 <script src="{{ url('public/assets/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
 <script src="{{ url('public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
 <script src="{{ url('public/assets/dist/js/adminlte.min.js') }}"></script>
+
+<script>
+
+
+$(document).ready(function() {
+    $('#loginForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("login") }}',
+            data: formData,
+            dataType:'json'
+            success: function(response) {
+
+                if (response.status == 'success') {
+                    $('#showMessage').html('<div class="alert alert-success alert-dismissible fade show" role="alert">'+
+                        '<strong>'+response.message+'</strong>'+
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                        '<span aria-hidden="true">&times;</span>'+
+                        '</button>'+
+                    '</div>').show();
+                    // window.location.href = '/dashboard';
+
+                }else{
+                    $('#showMessage').html('<div id="message" class="alert alert-danger alert-dismissible fade show" role="alert">'+
+                        '<strong>'+response.message+'</strong>'+
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                        '<span aria-hidden="true">&times;</span>'+
+                        '</button>'+
+                    '</div>').show();
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#showMessage').html('<div id="message" class="alert alert-danger alert-dismissible fade show" role="alert">'+
+                    '<strong>'+xhr.responseJSON.message+'</strong>'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                    '</button>'+
+                '</div>').show();
+
+            }
+        });
+    });
+});
+</script>
+
+
 </body>
 </html>

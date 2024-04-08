@@ -28,11 +28,11 @@
                     @include('admin.layouts._message')
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{$title}}</h3>
+                            <h3 class="card-title"><i class="fas fa-list pr-2"></i> {{$title}}</h3>
                             <a href="{{ url('admin/category/add')}}"  class="float-right btn btn-sm btn-primary"
                                 style="margin-right:2%;">Add New Category</a>
                         </div>
-                        <div class="card-body p-0">
+                        <div class="card-body p-2 table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -43,13 +43,14 @@
                                     <th>Meta Keyword</th>
                                     <th>Description</th>
                                     <th>Status</th>
+                                    <th>Created On</th>
                                     <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($category as $item)
+                                    <?php $n=1; foreach ($category as $item){ ?>
                                     <tr>
-                                    <td>{{ $item->id}}</td>
+                                    <td>{{ $n }}</td>
                                     <td>{{ $item->name}}</td>
                                     <td>{{ $item->slug}}</td>
                                     <td>{{ $item->meta_title}}</td>
@@ -63,6 +64,7 @@
                                             <span class="badge bg-warning">Inactive</span>
                                         @endif
                                     </td>
+                                    <td>{{ date('d-m-Y | h:m A ', strtotime($item->created_at))}}</td>
                                     <td>
                                         <div class="btn-group">
                                         <a href="{{url('admin/category/edit/'.Crypt::encrypt($item->id))}}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>
@@ -70,7 +72,7 @@
                                         </div>
                                     </td>
                                     </tr>
-                                    @endforeach
+                                    <?php $n++; } ?>
                                 </tbody>
                             </table>
                         </div>
