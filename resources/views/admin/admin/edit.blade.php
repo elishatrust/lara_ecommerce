@@ -24,32 +24,32 @@
             <div class="col-md-12">
                 <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">{{$title}}</h3>
+                    <h3 class="card-title"><i class="fas fa-edit pr-2"></i> {{$title}}</h3>
                 </div>
                 <form action="" method="post">
                     {{ csrf_field() }}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <label>Name</label>
+                                <label>Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control rounded-0" id="name" name="name" value="{{ old('name', $getAdmin->name) }}" placeholder="Enter full name" required="">
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Phone</label>
+                                <label>Phone <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control rounded-0" id="phone" name="phone" value="{{ old('phone', $getAdmin->phone) }}" placeholder="Enter phone number" required="">
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Email</label>
+                                <label>Email <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control rounded-0" id="email" name="email" value="{{ old('email', $getAdmin->email) }}" placeholder="Enter email" required="">
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Password</label>
+                                <label>Password <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control rounded-0" id="password" name="password" placeholder="Password">
                                 <p class="text-danger">Do you want to change password?</p>
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Status</label>
+                                <label>Status <span class="text-danger">*</span></label>
                                 <select name="status" id="status" class="form-control rounded-0" required="">
                                     <option disabled>Select</option>
                                     <option value="0" {{ ($getAdmin->status == '0') ? 'selected' : '' }}>Active</option>

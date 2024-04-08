@@ -18,16 +18,42 @@
       </div>
     </div>
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
 
-      </div>
-      <!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    @include('admin.layouts._message')
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-list pr-2"></i> {{$title}}</h3>
+                            <a href="{{ url('admin/user/add')}}"  class="float-right btn btn-sm btn-primary"
+                                style="margin-right:2%;">Add New User</a>
+                        </div>
+                        <div class="card-body p-2 table-responsive">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Created On</th>
+                                    <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
   </div>
-  <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

@@ -28,21 +28,35 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        //dd($request->all());
-        $remember = !empty($request->remember) ? true : false;
-        if(Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-            'status' => 0,
-            'archive' => 0,
-            'role'=>'1'], $remember))
-        {
-            // Pass
-            return redirect('admin/dashboard');
-        }else{
-            //Fail
-            return redirect()->back()->with('error', 'Incorrect E-mail or Password');
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+
+            $user = Auth::user();
+
+            ## For active user
+            if($user->archive == 0 && $user->status == 0)
+            {
+                if ($user->role == 1) {
+
+                    return redirect('admin/dashboard');
+
+                } elseif ($user->role == 2) {
+
+                    return redirect('admin/users');
+                }
+
+            }else{
+                return redirect()->back()->with('error', 'Incorrect Email or Password');
+
+            }
+
+
+            // return response()->json(['status' => 'success', 'message' => 'Login successful']);
         }
+        return redirect()->back()->with('error', 'Incorrect Email or Password');
+
+        // return response()->json(['status' => 'error', 'message' => 'Incorrect E-mail or Password'], 401);
     }
 
     public function logout()
@@ -56,6 +70,16 @@ class AuthController extends Controller
     {
         $data['title'] = 'My Profile';
         return view('admin.profile.index', $data);
+    }
+
+    public function updateProfile(Request $request ,$id)
+    {
+dd($request->all());
+    }
+    public function updatePassword(Request $request, $id)
+    {
+        dd($request->all());
+
     }
 
     /**

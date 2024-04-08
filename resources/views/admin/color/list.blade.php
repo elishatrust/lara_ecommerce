@@ -29,8 +29,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-list pr-2"></i> {{$title}}</h3>
-                            <a href="{{ url('admin/brand/add')}}"  class="float-right btn btn-sm btn-primary"
-                                style="margin-right:2%;">Add New Brand</a>
+                            <a href="{{ url('admin/color/add')}}"  class="float-right btn btn-sm btn-primary"
+                                style="margin-right:2%;">Add New Color</a>
                         </div>
                         <div class="card-body p-2 table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
@@ -38,27 +38,18 @@
                                     <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Meta Title</th>
-                                    <th>Meta Keyword</th>
-                                    <th>Description</th>
-                                    <th>Create By</th>
-                                    <th>Create On</th>
+                                    <th>Code</th>
                                     <th>Status</th>
+                                    <th>Created On</th>
                                     <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $n=1; foreach ($brand as $item){ ?>
+                                    <?php $n=1; foreach ($color as $item){ ?>
                                     <tr>
                                     <td>{{ $n }}</td>
                                     <td>{{ $item->name}}</td>
-                                    <td>{{ $item->slug}}</td>
-                                    <td>{{ $item->meta_title}}</td>
-                                    <td>{{ $item->meta_keyword}}</td>
-                                    <td>{{ $item->name}}</td>
-                                    <td>{{ substr($item->meta_description,0,50)."..."}}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y | h:m A') }}</td>
+                                    <td>{{ $item->code}}</td>
                                     <td>
                                         @if ($item->status==0)
                                             <span class="badge bg-primary">Active</span>
@@ -67,10 +58,11 @@
                                             <span class="badge bg-warning">Inactive</span>
                                         @endif
                                     </td>
+                                    <td>{{ date('d-m-Y | h:m A ', strtotime($item->created_at))}}</td>
                                     <td>
                                         <div class="btn-group">
-                                        <a href="{{url('admin/brand/edit/'.Crypt::encrypt($item->id))}}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>
-                                        <a onclick="return confirm('Do You Want to Delete This Record ?')?window.location.href='{{url('admin/brand/delete/'.Crypt::encrypt($item->id))}}':false;" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                        <a href="{{url('admin/color/edit/'.Crypt::encrypt($item->id))}}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>
+                                        <a onclick="return confirm('Do You Want to Delete This Record ?')?window.location.href='{{url('admin/color/delete/'.Crypt::encrypt($item->id))}}':false;" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                     </tr>

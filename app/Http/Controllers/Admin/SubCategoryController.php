@@ -80,4 +80,18 @@ class SubCategoryController extends Controller
             return redirect()->back()->with('error', 'Sub Category not found');
         }
     }
+    public function getSubCategory(Request $request)
+    {
+        $category_id = $request->id;
+        $get_sub_category = SubCategory::selectSubCategory($category_id);
+
+        $html = '';
+        $html .= '<option value="">Select</option>';
+        foreach ($get_sub_category as $value) {
+            $html = '<option value="'.$value->id.'">'.$value->name.'</option>';
+        }
+        $json['html'] = $html;
+        return response()->json($json);
+
+    }
 }

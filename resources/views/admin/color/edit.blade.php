@@ -32,32 +32,21 @@
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <label>Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-0" id="name" name="name" value="{{ old('name', $getBrand->name) }}" placeholder="Enter name" required="">
+                                <input type="text" class="form-control rounded-0" id="name" name="name" value="{{ old('name', $color->name) }}" placeholder="Enter name" required="">
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Slug <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-0" id="slug" name="slug" value="{{ old('slug', $getBrand->slug) }}" placeholder="Enter slug Ex. URL" required="">
-                                <span class="text-danger">{{ $errors->first('slug') }}</span>
+                                <label>Code <span class="text-danger">*</span></label>
+                                <input type="color" class="form-control rounded-0" id="code" name="code" value="{{ old('code', $color->code) }}" placeholder="Enter code Ex. #000" required="">
+                                <span class="text-danger">{{ $errors->first('code') }}</span>
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Status <span class="text-danger">*</span></label>
                                 <select name="status" id="status" class="form-control rounded-0" required="">
                                     <option disabled>Select</option>
-                                    <option value="0" {{ ($getBrand->status == '0') ? 'selected' : '' }}>Active</option>
-                                    <option value="1" {{ ($getBrand->status == '1') ? 'selected' : '' }}>Inactive</option>
+                                    <option value="0" {{ ($color->status == '0') ? 'selected' : '' }}>Active</option>
+                                    <option value="1" {{ ($color->status == '1') ? 'selected' : '' }}>Inactive</option>
                                 </select>
-                            </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Meta Title <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-0" id="meta_title" name="meta_title" value="{{ old('meta_title', $getBrand->meta_title) }}" placeholder="Enter meta title" required="">
-                            </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Meta Keyword <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-0" id="meta_keyword" name="meta_keyword" value="{{ old('meta_keyword', $getBrand->meta_keyword) }}" placeholder="Enter meta keyword" required="">
-                            </div>
-                            <div class="col-lg-12 col-sm-12 form-group">
-                                <label>Meta Description <span class="text-danger">*</span></label>
-                                <textarea name="meta_description" id="meta_description" rows="3" class="form-control rounded-0">{{ old('meta_description', $getBrand->meta_description) }}</textarea>
                             </div>
                         </div>
                     </div>

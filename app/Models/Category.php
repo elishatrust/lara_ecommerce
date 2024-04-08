@@ -16,6 +16,10 @@ class Category extends Model
     {
         return Category::select('category.*')->where('archive', 0)->orderBy('id','desc')->get();
     }
+    static function getActiveCategory()
+    {
+        return Category::select('category.*')->where('status', 0)->where('archive', 0)->orderBy('name','asc')->get();
+    }
     static function getSingle($id)
     {
         return Category::find($id);

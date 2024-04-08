@@ -24,6 +24,11 @@ class Brand extends Model
                 ->get();
     }
 
+    static public function getActiveBrand()
+    {
+        return self::select('brand.*')->where('archive',0)->where('status',0)->orderBy('name','asc')->get();
+    }
+
     public static function getById($id)
     {
         return static::where('id', $id)->update(['archive' => 1]);

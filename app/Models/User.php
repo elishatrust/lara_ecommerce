@@ -49,23 +49,16 @@ class User extends Authenticatable
 
     static function getAdmin()
     {
-        return User::select('users.*')
-            ->where('role', '=', '1')
-            ->where('archive', '=', '0')
-            ->orderBy('id', 'desc')
-            ->get();
+        return User::select('users.*')->where('role', '=', '1')->where('archive', '=', '0')->orderBy('id', 'desc')->get();
     }
 
     static function getSingle($id)
     {
         // return User::select('users.*')->where('id', '=', $id)->first();
+        // OR
+
         return User::find($id);
     }
-
-    // public function getUpdateSingle($slug)
-    // {
-    //     return DB::table('users')->where(['id'=>$slug])->update(['archive'=>1]);
-    // }
 
     public static function getById($id)
     {
