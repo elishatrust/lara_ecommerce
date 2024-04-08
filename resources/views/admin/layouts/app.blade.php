@@ -23,6 +23,12 @@
   <link rel="stylesheet" href="{{ url('public/assets/dist/css/adminlte.min.css') }}">
 
 
+<!-- jQuery -->
+<script src="{{ url('public/assets/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ url('public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -39,7 +45,7 @@
 <!-- Bootstrap -->
 <script src="{{ url('public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url('public/assets/dist/js/adminlte.js') }}"></script>
-<script src="{{ url('public/assets/plugins/chart.js/Chart.min.js') }}"></script>
+{{-- <script src="{{ url('public/assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
 <script src="{{ url('public/assets/dist/js/pages/dashboard3.js') }}"></script>
 
 <!-- DataTables  & Plugins -->
@@ -58,57 +64,6 @@
 
 <!-- AdminLTE App -->
 <script src="{{ url('public/assets/dist/js/adminlte.min.js') }}"></script>
-
-<script>
-
-$(document).ready(function () {
-
-    var i = 0;
-    $('body').delegate('.addSize', 'click', function(e){
-        var html = '<tr id="deleteSize'+i+'">'+
-                        '<td><input type="text" name="name" placeholder="Enter name" class="form-control"></td>'+
-                        '<td><input type="number" min="0" name="price" placeholder="Enter price" class="form-control"></td>'+
-                        '<td>'+
-                            '<div class="btn-group">'+
-                            '<button type="button" title="Delete" id="'+i+'"  class="btn btn-sm btn-danger deleteSize"><i class="fas fa-trash"></i></button>'+
-                            '</div>'+
-                        '</td>'+
-                    '</tr>';
-        i++;
-        $('#appendSize').append(html);
-    })
-
-
-    $('body').delegate('.deleteSize','click', function(e){
-        e.preventDefault();
-        var id = $(this).attr('id');
-        $('#deleteSize'+id).remove();
-    });
-
-    $('body').delegate('#category','change', function(e){
-        e.preventDefault();
-        var id = $(this).val();
-
-        $.ajax({
-            type: "POST",
-            url: "{{ url('admin/get_subCategory') }}",
-            data: {
-                "id" : id,
-                "_token" : "{{ csrf_token() }}"
-            },
-            dataType: "json",
-            success: function (data) {
-                $('#sub_category').html(data.html);
-            },
-            error:function(data){
-            }
-        });
-    });
-
-
-});
-</script>
-
 
 <!-- Page specific script -->
 <script>
