@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Category;
-use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
