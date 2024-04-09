@@ -154,63 +154,68 @@
   </aside>
   <!-- /.control-sidebar -->
 
+
 <script src="{{ url('public/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
 <script>
 
-    $(document).ready(function () {
-        $('textarea.summernote').summernote({
-            placeholder: 'Add description',
-            tabsize: 2,
-            height: 100,
-            minHeight: null,
-            maxHeight: null,
-            focus: true
-        });
-
-        var i = 0;
-        $('body').delegate('.addSize', 'click', function(e){
-            var html = '<tr id="deleteSize'+i+'">'+
-                            '<td><input type="text" name="name" placeholder="Enter name" class="form-control"></td>'+
-                            '<td><input type="number" min="0" name="price" placeholder="Enter price" class="form-control"></td>'+
-                            '<td>'+
-                                '<div class="btn-group">'+
-                                '<button type="button" title="Delete" id="'+i+'"  class="btn btn-sm btn-danger deleteSize"><i class="fas fa-trash"></i></button>'+
-                                '</div>'+
-                            '</td>'+
-                        '</tr>';
-            i++;
-            $('#appendSize').append(html);
-        })
+$(document).ready(function () {
 
 
-        $('body').delegate('.deleteSize','click', function(e){
-            e.preventDefault();
-            var id = $(this).attr('id');
-            $('#deleteSize'+id).remove();
-        });
+    var i = 0;
+    $('body').delegate('.addSize', 'click', function(e){
+        var html = '<tr id="deleteSize'+i+'">'+
+                        '<td><input type="text" name="name" placeholder="Enter name" class="form-control"></td>'+
+                        '<td><input type="number" min="0" name="price" placeholder="Enter price" class="form-control"></td>'+
+                        '<td>'+
+                            '<div class="btn-group">'+
+                            '<button type="button" title="Delete" id="'+i+'"  class="btn btn-sm btn-danger deleteSize"><i class="fas fa-trash"></i></button>'+
+                            '</div>'+
+                        '</td>'+
+                    '</tr>';
+        i++;
+        $('#appendSize').append(html);
+    })
 
-        $('body').delegate('#category','change', function(e){
-            e.preventDefault();
-            var id = $(this).val();
 
-            $.ajax({
-                type: "POST",
-                url: "{{ url('admin/get_subCategory') }}",
-                data: {
-                    "id" : id,
-                    "_token" : "{{ csrf_token() }}"
-                },
-                dataType: "json",
-                success: function (data) {
-                    $('#sub_category').html(data.html);
-                },
-                error:function(data){
-                }
-            });
-        });
-
+    $('body').delegate('.deleteSize','click', function(e){
+        e.preventDefault();
+        var id = $(this).attr('id');
+        $('#deleteSize'+id).remove();
     });
+
+
+    $('body').delegate('#category_id','change', function(e){
+        e.preventDefault();
+        var id = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "{{ url('admin/get_subCategory') }}",
+            data: {
+                "id" : id,
+                "_token" : "{{ csrf_token() }}"
+            },
+            dataType: "json",
+            success: function (data) {
+                $('#sub_category_id').html(data.html);
+            },
+            error:function(data){
+            }
+        });
+    });
+
+    $('textarea.summernote').summernote({
+        placeholder: 'Add description',
+        tabsize: 2,
+        height: 100,
+        minHeight: null,
+        maxHeight: null,
+        focus: true
+    });
+
+});
+
 </script>
 
 @endsection

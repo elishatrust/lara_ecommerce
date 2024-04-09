@@ -25,7 +25,6 @@
 
 <!-- jQuery -->
 <script src="{{ url('public/assets/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
 <script src="{{ url('public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 
@@ -40,12 +39,9 @@
 
 </div>
 
-<!-- jQuery -->
-<script src="{{ url('public/assets/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
-<script src="{{ url('public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 <script src="{{ url('public/assets/dist/js/adminlte.js') }}"></script>
-{{-- <script src="{{ url('public/assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
+<script src="{{ url('public/assets/plugins/chart.js/Chart.min.js') }}"></script>
 <script src="{{ url('public/assets/dist/js/pages/dashboard3.js') }}"></script>
 
 <!-- DataTables  & Plugins -->
@@ -64,6 +60,7 @@
 
 <!-- AdminLTE App -->
 <script src="{{ url('public/assets/dist/js/adminlte.min.js') }}"></script>
+
 
 <!-- Page specific script -->
 <script>
