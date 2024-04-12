@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ProductColor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +33,11 @@ class Product extends Model
     public static function getById($id)
     {
         return static::where('id', $id)->update(['archive' => 1]);
+    }
+
+    static public function getColor()
+    {
+        return $this->hasMany(ProductColor::class, "product_id");
     }
 
 }

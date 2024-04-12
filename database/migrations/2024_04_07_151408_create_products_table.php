@@ -23,12 +23,12 @@ return new class extends Migration
 
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brand');
-            $table->string('old_price')->nullable()->default(0);
-            $table->string('price')->nullable()->default(0);
+            $table->string('old_price')->nullable();
+            $table->string('price')->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
-            $table->string('additional_info')->nullable();
-            $table->string('shipping_returns')->nullable();
+            $table->text('additional_info')->nullable();
+            $table->text('shipping_returns')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('archive')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();

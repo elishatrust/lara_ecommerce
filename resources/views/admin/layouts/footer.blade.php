@@ -1,3 +1,12 @@
 <footer class="main-footer">
-    <strong>Copyright &copy;  {{ date('Y')}}  <a href="javascript:void(0)">E-Commerce App</a>.</strong>All rights reserved.
+    <div class="row">
+        <div class="col-md-4">
+            <strong>Copyright &copy;  {{ date('Y')}}  <a href="javascript:">Lara E-Commerce</a></strong>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="float-right d-none d-sm-inline-block"><b>Version</b> 1.0</div>
+        </div>
+    </div>
 </footer>
+

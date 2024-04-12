@@ -30,7 +30,7 @@
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <div class="col-md-12 col-sm-12 form-group">
                                         <label>Title <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control rounded-0" id="title" name="title" value="{{ old('title') }}" placeholder="Enter Title" required="">
                                     </div>
@@ -48,10 +48,5 @@
     </section>
 </div>
 
-
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 
 @endsection

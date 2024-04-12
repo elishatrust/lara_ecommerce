@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -60,6 +62,7 @@ class ProductController extends Controller
         {
             $data['title'] = 'Edit Product';
             $data['product'] = $product;
+            $data['sub_category'] = SubCategory::selectSubCategory($product->category_id);
             return view('admin.product.edit', $data);
         }else{
 
@@ -80,8 +83,53 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $productID = Crypt::decrypt($id);
         dd($request->all());
+        $productID = Crypt::decrypt($id);
+        $product = Product::getSingle($productID);
+        if(!empty($product))
+        {
+            $product->title = trim($request->title);
+            $product->sku = trim($request->sku);
+            $product->category_id = trim($request->category_id);
+            $product->sub_category_id = trim($request->sub_category_id);
+            $product->brand_id = trim($request->brand_id);
+            $product->price = trim($request->price);
+            $product->old_price = trim($request->old_price);
+            $product->short_description = trim($request->short_description);
+            $product->description = trim($request->description);
+            $product->additional_info = trim($request->additional_info);
+            $product->shipping_returns = trim($request->shipping_returns);
+            $product->status = trim($request->status);
+            $product->created_by = Auth::user()->id;
+            $product->save();
+
+
+
+            ## Delete product if exist
+            // $deleteProduct = ProductColor::deleteProduct($productID);
+            // if($deleteProduct)
+            // {
+
+            // }
+
+            ProductColor::deleteProduct($productID);
+
+            if(!empty($request->color_id))
+            {
+                foreach ($request->color_id as $color_id)
+                {
+                    $color = new ProductColor;
+                    $color->color_id = $color_id;
+                    $color->product_id = $productID;
+                    $color->save();
+                }
+            }
+
+            return redirect()->back()->with('success', 'Product added successfully');
+
+        } else {
+            return redirect()->back()->with('error', 'Product not found');
+        }
     }
 
 }

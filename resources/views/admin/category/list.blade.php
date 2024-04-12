@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-list pr-2"></i> {{$title}}</h3>
                             <a href="{{ url('admin/category/add')}}"  class="float-right btn btn-sm btn-primary"
-                                style="margin-right:2%;">Add New Category</a>
+                                style="margin-right:2%;">Add New</a>
                         </div>
                         <div class="card-body p-2 table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
