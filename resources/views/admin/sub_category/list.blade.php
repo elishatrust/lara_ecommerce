@@ -39,9 +39,9 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Slug</th>
+                                    <th>Category</th>
                                     <th>Meta Title</th>
                                     <th>Meta Keyword</th>
-                                    <th>Category Name</th>
                                     <th>Description</th>
                                     <th>Status</th>
                                     <th>Created On</th>
@@ -54,10 +54,10 @@
                                     <tr>
                                     <td>{{ $n }}</td>
                                     <td>{{ $item->name}}</td>
-                                    <td>{{ $item->slug}}</td>
+                                    <td><i>{{ $item->slug }}</i></td>
+                                    <td>{{ $category->name}}</td>
                                     <td>{{ $item->meta_title}}</td>
                                     <td>{{ $item->meta_keyword}}</td>
-                                    <td>{{ $category->name}}</td>
                                     <td>{{ $item->description}}</td>
                                     <td>
                                         @if ($item->status==0)

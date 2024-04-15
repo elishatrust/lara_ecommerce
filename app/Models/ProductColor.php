@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ProductColor extends Model
 {
@@ -12,8 +13,9 @@ class ProductColor extends Model
     protected $table = 'product_color';
 
     ## Delete productID if exist
-    static public function deleteProduct($productID)
+    static public function deleteProduct($product_id)
     {
-        return self::where('product_id', '=', $productID)->delete();
+        return self::where('product_id', '=', $product_id)->delete();
     }
+
 }

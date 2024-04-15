@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar elevation-4" style="background: #000;">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard')}}" class="brand-link text-center">
       {{-- <img src="{{ url('public/assets/dist/img/AdminLTELogo.png')}}" alt="E-COMMERCE" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}

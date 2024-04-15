@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-edit pr-2"></i> {{$title}}</h3>
                         </div>
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="row">
@@ -73,15 +73,23 @@
                                         <label>Color <span class="text-danger">*</span></label>
                                         <div>
                                             @foreach ($color as $item)
-                                                {{-- @php
+                                                @php
                                                     $checked = '';
-                                                @endphp --}}
-                                            <label for="color" class="pr-3"><input type="checkbox" name="color_id[]" id="color_id[]" value="{{ $item->name }}"> {{ $item->name }} </label>
+                                                @endphp
+                                                @foreach ($product->getColor as $pcolor)
+                                                    @if ($pcolor->color_id == $item->id)
+                                                        @php
+                                                            $checked = 'checked';
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                            <label for="color" class="pr-3"><input type="checkbox" {{$checked}} name="color_id[]" id="color_id[]" value="{{ $item->id }}"> {{ $item->name }} </label>
                                             @endforeach
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
+
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 form-group">
                                         <label>New Price (TZS) <span class="text-danger">*</span></label>
@@ -103,9 +111,22 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="appendSize">
+                                                    @php $iSize = 1; @endphp
+                                                    @foreach ($product->getSize as $item)
+                                                    <tr id="deleteSize{{$iSize}}">
+                                                        <td><input type="text" name="size[{{ $iSize }}][name]" value="{{ $item->name }}" id="size_name" placeholder="Enter name" class="form-control"></td>
+                                                        <td><input type="number" min="0" name="size[{{ $iSize }}][price]" value="{{ $item->price }}" id="size_price" placeholder="Enter price" class="form-control"></td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                            <button type="button" id="{{ $iSize }}" title="Delete" class="btn btn-sm btn-danger deleteSize"><i class="fas fa-trash"></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    @php $iSize++; @endphp
+                                                    @endforeach
                                                     <tr>
-                                                        <td><input type="text" name="size_name" id="size_name" placeholder="Enter name" class="form-control"></td>
-                                                        <td><input type="number" min="0" name="size_price" id="size_price" placeholder="Enter price" class="form-control"></td>
+                                                        <td><input type="text" name="size[100][name]" id="size_name" placeholder="Enter name" class="form-control"></td>
+                                                        <td><input type="number" min="0" name="size[100][price]" id="size_price" placeholder="Enter price" class="form-control"></td>
                                                         <td>
                                                             <div class="btn-group">
                                                             <button type="button" title="Add" class="btn btn-sm btn-info addSize"><i class="far fa-plus-square"></i></button>
@@ -118,6 +139,28 @@
                                     </div>
                                 </div>
                                 <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 form-group">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control rounded-0" id="image[]" name="image[]" multiple accept="" style="padding: 5px;" value="" placeholder="Upload file" >
+                                    </div>
+                                </div>
+
+                                @if (!empty($product->getImage->count()))
+                                <div class="row" id="sortable">
+                                    @foreach ($product->getImage as $image)
+                                        @if (!empty($image->listImage()))
+                                            <div class="col-md-1 col-sm-12 form-group text-center sortable-image" id="{{$image->id}}">
+                                                <img src="{{$image->listImage()}}" style="width:100%; height:80px;" alt="">
+                                                <a onclick="return confirm('Are you sure you want to delete this image?')?window.location.href='{{url('admin/product/delete_image/'.Crypt::encrypt($image->id))}}':false;" class="btn btn-sm btn-danger text-center mt-1"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @endif
+                                <hr>
+
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 form-group">
                                         <label>Short Description <span class="text-danger">*</span></label>
@@ -160,12 +203,16 @@
 
 
 <script src="{{ url('public/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="{{ url('public/assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
 
 <script>
 
     $(document).ready(function () {
+
+        // Texteditor
         $('textarea.summernote').summernote({
-            placeholder: 'Add description',
+            placeholder: 'Enter description...',
             tabsize: 2,
             height: 100,
             minHeight: null,
@@ -173,11 +220,36 @@
             focus: true
         });
 
-        var i = 0;
+        // Sorting Images
+        $('#sortable').sortable({
+            update : function(event,ui){
+                var photo_id = new Array();
+                $('.sortable_image').each(function(){
+                    var id = $(this).attr('id');
+                    photo_id.push(id);
+                })
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('admin/product/image_sortable') }}",
+                    data: {
+                        "photo_id" : photo_id,
+                        "_token" : "{{ csrf_token() }}"
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                    },
+                    error:function(data){
+                    }
+                });
+            }
+        })
+
+        // Add table fields
+        var i = 101;
         $('body').delegate('.addSize', 'click', function(e){
             var html = '<tr id="deleteSize'+i+'">'+
-                            '<td><input type="text" name="name" placeholder="Enter name" class="form-control"></td>'+
-                            '<td><input type="number" min="0" name="price" placeholder="Enter price" class="form-control"></td>'+
+                            '<td><input type="text" name="size['+i+'][name]" placeholder="Enter name" class="form-control"></td>'+
+                            '<td><input type="number" min="0" name="size['+i+'][price]" placeholder="Enter price" class="form-control"></td>'+
                             '<td>'+
                                 '<div class="btn-group">'+
                                 '<button type="button" title="Delete" id="'+i+'"  class="btn btn-sm btn-danger deleteSize"><i class="fas fa-trash"></i></button>'+
@@ -189,12 +261,14 @@
         })
 
 
+        // Deleting table Fields
         $('body').delegate('.deleteSize','click', function(e){
             e.preventDefault();
             var id = $(this).attr('id');
             $('#deleteSize'+id).remove();
         });
 
+        // Changing Category
         $('body').delegate('#category_id','change', function(e){
             e.preventDefault();
             var id = $(this).val();

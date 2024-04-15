@@ -52,7 +52,7 @@
                                     <tr>
                                     <td>{{ $n }}</td>
                                     <td>{{ $item->name}}</td>
-                                    <td>{{ $item->slug}}</td>
+                                    <td><i>{{ $item->slug }}</i></td>
                                     <td>{{ $item->meta_title}}</td>
                                     <td>{{ $item->meta_keyword}}</td>
                                     <td>{{ $item->description}}</td>

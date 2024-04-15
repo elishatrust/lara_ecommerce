@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Category;
+use App\Models\ProductImage;
+use App\Models\ProductSize;
 use App\Models\SubCategory;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
@@ -56,6 +58,7 @@ class ProductController extends Controller
 
         $data['brand'] = Brand::getActiveBrand();
         $data['color'] = Color::getActiveColor();
+        // $data['product_color'] = ProductColor::getColor();
         $data['category'] = Category::getActiveCategory();
 
         if(!empty($product))
@@ -83,11 +86,13 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
         $productID = Crypt::decrypt($id);
         $product = Product::getSingle($productID);
+
+        ## Check the product & save
         if(!empty($product))
         {
+            ## Declare product details
             $product->title = trim($request->title);
             $product->sku = trim($request->sku);
             $product->category_id = trim($request->category_id);
@@ -103,25 +108,63 @@ class ProductController extends Controller
             $product->created_by = Auth::user()->id;
             $product->save();
 
+            ## Delete product if exist
+            ProductColor::deleteProduct($product->id);
+
+            ## Check the color & save
+            if(!empty($request->color_id))
+            {
+                foreach ($request->color_id as $colorID)
+                {
+                    $color = new ProductColor();
+                    $color->color_id = $colorID;
+                    $color->product_id = $product->id;
+                    $color->save();
+                }
+            }
+
+            ## Delete product if exist
+            ProductSize::deleteProduct($product->id);
+
+            ## Check the size & save
+            if(!empty($request->size))
+            {
+                foreach ($request->size as $size)
+                {
+                    if(!empty($size['name']))
+                    {
+                        $saveSize = new ProductSize;
+                        $saveSize->name = $size['name'];
+                        $saveSize->price = !empty($size['price']) ? $size['price'] : 0 ;
+                        $saveSize->product_id = $product->id;
+                        $saveSize->save();
+                    }
+                }
+            }
+
 
 
             ## Delete product if exist
-            // $deleteProduct = ProductColor::deleteProduct($productID);
-            // if($deleteProduct)
-            // {
+            // ProductImage::deleteProduct($product->id);
 
-            // }
-
-            ProductColor::deleteProduct($productID);
-
-            if(!empty($request->color_id))
+            ## File upload
+            if(!empty($request->file('image')))
             {
-                foreach ($request->color_id as $color_id)
+                foreach ($request->file('image') as $value)
                 {
-                    $color = new ProductColor;
-                    $color->color_id = $color_id;
-                    $color->product_id = $productID;
-                    $color->save();
+                    if($value->isValid())
+                    {
+                        $ext = $value->getClientOriginalExtension();
+                        $randomStr = $product->id.Str::random(20);
+                        $filename = strtolower($randomStr).'.'.$ext;
+                        $value->move('uploads/product/', $filename);
+
+                        $upload_img = new ProductImage;
+                        $upload_img->name = $filename;
+                        $upload_img->extension = $ext;
+                        $upload_img->product_id = $product->id;
+                        $upload_img->save();
+                    }
                 }
             }
 
@@ -131,6 +174,44 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Product not found');
         }
     }
+
+    public function delete_image($id)
+    {
+        $imageID = Crypt::decrypt($id);
+        $image = ProductImage::getSingle($imageID);
+
+        if(!empty($image->listImage()))
+        {
+            unlink('uploads/product/'.$image->name);
+        }
+
+        if ($image->delete()) {
+            return redirect()->back()->with('success', 'Image deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'Image not found');
+        }
+    }
+
+    public function image_sortable(Request $request)
+    {
+        if(!empty($request->photo_id))
+        {
+            $i = 1;
+            foreach($request->photo_id as $photo_id)
+            {
+                $image = ProductImage::getSingle($photo_id);
+                $image->order_by = $i;
+                $image->save();
+
+                $i++;
+            }
+        }
+
+        $json['success'] = true;
+        return response()->json($json);
+
+    }
+
 
 }
 

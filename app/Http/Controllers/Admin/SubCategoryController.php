@@ -55,7 +55,7 @@ class SubCategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'slug' => 'required|unique:sub_category,slug,'
+            'slug' => 'required|unique:sub_category,slug'
         ]);
         $sub_categoryID = Crypt::decrypt($id);
         $sub_category = SubCategory::getSingle($sub_categoryID);

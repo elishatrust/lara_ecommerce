@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Models\ProductColor;
+use App\Models\ProductSize;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Product extends Model
 {
@@ -23,7 +26,6 @@ class Product extends Model
                 ->where('products.archive','=',0)
                 ->orderBy('products.id','desc')
                 ->get();
-                // ->paginate(2);
     }
 
     static public function getSingle($id)
@@ -35,9 +37,20 @@ class Product extends Model
         return static::where('id', $id)->update(['archive' => 1]);
     }
 
-    static public function getColor()
+    public function getColor()
     {
-        return $this->hasMany(ProductColor::class, "product_id");
+        return $this->hasMany(ProductColor::class, 'product_id');
+    }
+
+
+    public function getSize()
+    {
+        return $this->hasMany(ProductSize::class, 'product_id');
+    }
+
+    public function getImage()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id')->orderBy('order_by', 'asc');
     }
 
 }
