@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index']);
 
 ## Authentication
-Route::get('admin/', [AuthController::class, 'index']);
+Route::get('admin/', [AuthController::class, 'index'])->name('admin');
 Route::post('admin/', [AuthController::class, 'login'])->name('login');
 
 Route::get('admin/logout', [AuthController::class, 'logout']);
@@ -71,7 +71,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/product/delete_image/{id}', [ProductController::class, 'delete_image']);
     Route::post('admin/product/image_sortable', [ProductController::class, 'image_sortable']);
 
-    
+
     ## Color
     Route::get('admin/color/list', [ColorController::class, 'list']);
     Route::get('admin/color/add', [ColorController::class, 'add']);

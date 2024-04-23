@@ -4,14 +4,14 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
-                        <a href="{{ url('/') }}">
+
+                        <a href="{{ url('/') }}" class="logo m-auto">
                             <h4>
                                 <span style="color:#007bff;">LARA </span>
                                 <span style="color:#ff0000;">SHOP</span>
                             </h4>
-                            {{-- <img src="{{ asset('public/assets-front/images/logo-footer.png') }}" class="footer-logo" alt="Footer Logo" width="105" height="25"> --}}
-
                         </a>
+                        {{-- <img src="{{ url('public/assets-front/images/logo-footer.png') }}" class="footer-logo" alt="Footer Logo" width="105" height="25"> --}}
                         <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
 
                         <div class="social-icons">
@@ -29,11 +29,9 @@
                         <h4 class="widget-title">Useful Links</h4>
 
                         <ul class="widget-list">
-                            <li><a href="{{ url('about') }}">About LaraShop</a></li>
-                            <li><a href="#">How to shop on LaraShop</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="{{ url('about')}}">About Us</a></li>
                             <li><a href="{{ url('contact') }}">Contact us</a></li>
-                            <li><a href="#signin-modal" data-toggle="modal">Login</a></li>
+                            <li><a href="#signin-modal" data-toggle="modal">Log in</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,8 +57,8 @@
 
                         <ul class="widget-list">
                             <li><a href="#signin-modal" data-toggle="modal">Sign In</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="{{ url('wishlist')}}">My Wishlist</a></li>
+                            <li><a href="{{ url('cart') }}">View Cart</a></li>
+                            <li><a href="{{ url('Wishlist') }}">My Wishlist</a></li>
                             <li><a href="#">Track My Order</a></li>
                             <li><a href="#">Help</a></li>
                         </ul>
@@ -72,9 +70,9 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="footer-copyright">Copyright © 2019-{{ date('Y') }} LaraShop Store. All Rights Reserved.</p>
+            <p class="footer-copyright">Copyright © 2020-{{ date('Y') }} LaraShop Store. All Rights Reserved.</p>
             <figure class="footer-payments">
-                <img src="{{ asset('public/assets-front/images/payments.png') }}" alt="Payment methods" width="272" height="20">
+                <img src="{{ url('public/assets-front/images/payments.png') }}" alt="Payment methods" width="272" height="20">
             </figure>
         </div>
     </div>

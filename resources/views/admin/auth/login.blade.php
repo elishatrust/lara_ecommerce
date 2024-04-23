@@ -19,7 +19,7 @@
 
 <Style>
   body{
-    background: url('public/images/bg-3.jpg');
+    background: url('public/assets/dist/img/larashop.jpg');
     background-attachment: fixed;
     backface-visibility: visible;
     background-size: cover;
@@ -39,14 +39,11 @@
       @include('admin.layouts._message')
 
       <form action="" method="post">
-        {{-- {{ csrf_field() }} --}}
-        {{-- <div id="showMessage"></div> --}}
-        {{-- <form id="loginForm"> --}}
 
             @csrf
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="E-Mail" name="email" id="email" required>
+          <input type="email" class="form-control" placeholder="E-Mail" name="email" id="email" value="{{ old('email') }}" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -54,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
+          <input type="password" class="form-control" placeholder="Password" name="password"  value="{{ old('password') }}" id="password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

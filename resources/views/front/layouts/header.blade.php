@@ -3,9 +3,10 @@
         <div class="container">
             <div class="header-left">
                 <div class="header-dropdown">
-                    <a href="#">Currency</a>
+                    <a href="#">Curr</a>
                     <div class="header-menu">
                         <ul>
+                            <li><a href="#">USD</a></li>
                             <li><a href="#">TZS</a></li>
                         </ul>
                     </div>
@@ -26,7 +27,7 @@
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            <li><a href="tel:+255653064129"><i class="icon-phone"></i> +255 653 064 129</a></li>
+                            <li><a href="tel:+255653 064129"><i class="icon-phone"></i> +255 653 064129</a></li>
                             <li><a href="{{ url('wishlist') }}"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a></li>
                             <li><a href="{{ url('about') }}">About Us</a></li>
                             <li><a href="{{ url('contact') }}">Contact Us</a></li>
@@ -46,20 +47,17 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="{{ url('/') }}" class="logo mt-4">
-                    <h4>
+                <a href="{{ url('/') }}" class="logo">
+                    <h4 class="mt-2">
                         <span style="color:#007bff;">LARA </span>
                         <span style="color:#ff0000;">SHOP</span>
                     </h4>
-
-
-                    {{-- <img src="{{ asset('public/assets-front/images/logo.png') }}" alt="Molla Logo" width="105" height="25"> --}}
                 </a>
 
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
-                            <a href="{{ url('/') }}" class="sf-with-ul1234">Home</a>
+                            <a href="{{ url('/') }}" class="sf-with-ul123">Home</a>
                         </li>
                         <li>
                             <a href="javascript:" class="sf-with-ul">Shop</a>
@@ -76,12 +74,13 @@
                                                 @php
                                                     $sub_category = App\Models\SubCategory::selectSubCategory($cat->id);
                                                 @endphp
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="menu-title"><a href="{{ url($cat->slug) }}">{{ $cat->name }}</a></div>
                                                     <ul>
                                                         @foreach ($sub_category as $sub_cat)
                                                         <li><a href="{{ url($cat->slug.'/'.$sub_cat->slug)}}">{{ $sub_cat->name }}</a></li>
                                                         @endforeach
+                                                        <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
                                                     </ul>
                                                 </div>
                                                 @endforeach
@@ -101,30 +100,22 @@
                                             <div class="menu-title">Product Details</div>
                                             <ul>
                                                 <li><a href="product.html">Default</a></li>
-                                                <li><a href="product-centered.html">Centered</a></li>
-                                                <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
-                                                <li><a href="product-gallery.html">Gallery</a></li>
                                                 <li><a href="product-sticky.html">Sticky Info</a></li>
                                                 <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
-                                                <li><a href="product-fullwidth.html">Full Width</a></li>
-                                                <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
                                             </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="banner banner-overlay">
-                                            <a href="category.html">
-                                                <img src="{{ asset('public/assets-front/images/menu/banner-2.jpg') }}" alt="Banner">
-
-                                                <div class="banner-content banner-content-bottom">
-                                                    <div class="banner-title text-white">New Trends<br><span><strong>spring 2019</strong></span></div>
-                                                </div>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </li>
+                        <li>
+                            <a href="{{ url('blog') }}" class="sf-with-ul">Blog</a>
+
+                            <ul>
+                                <li><a href="blog.html">Classic</a></li>
+                                <li><a href="blog-listing.html">Listing</a></li>
+                                <li><a href="single.html">Default with sidebar</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -161,10 +152,9 @@
                                     </span>
                                 </div>
 
-
                                 <figure class="product-image-container">
                                     <a href="product.html" class="product-image">
-                                        <img src="{{ asset('public/assets-front/images/products/cart/product-1.jpg') }}" alt="product">
+                                        <img src="{{ url('public/assets-front/images/products/cart/product-1.jpg') }}" alt="product">
                                     </a>
                                 </figure>
                                 <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
@@ -184,7 +174,7 @@
 
                                 <figure class="product-image-container">
                                     <a href="product.html" class="product-image">
-                                        <img src="{{ asset('public/assets-front/images/products/cart/product-2.jpg') }}" alt="product">
+                                        <img src="{{ url('public/assets-front/images/products/cart/product-2.jpg') }}" alt="product">
                                     </a>
                                 </figure>
                                 <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>

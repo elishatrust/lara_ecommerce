@@ -16,28 +16,11 @@
     </div>
 @endif
 
-
-
-
-
-{{--
-<div class="card-body">
-    <button type="button" class="btn btn-success swalDefaultSuccess">
-      Launch Success Toast
+@if (!empty(session('prompt')))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('prompt') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
     </button>
-    <button type="button" class="btn btn-info swalDefaultInfo">
-      Launch Info Toast
-    </button>
-    <button type="button" class="btn btn-danger swalDefaultError">
-      Launch Error Toast
-    </button>
-    <button type="button" class="btn btn-warning swalDefaultWarning">
-      Launch Warning Toast
-    </button>
-    <button type="button" class="btn btn-default swalDefaultQuestion">
-      Launch Question Toast
-    </button>
-    <div class="text-muted mt-3">
-      For more examples look at <a href="https://sweetalert2.github.io/">https://sweetalert2.github.io/</a>
     </div>
-  </div> --}}
+@endif

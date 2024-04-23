@@ -7,6 +7,7 @@
     <meta name="" content="">
     <title>{{ !empty($title) ? Str::upper($title) : "" }}</title>
 
+    <link rel="shortcut icon" href="{{ url('public/assets-front/images/icons/favicon.ico') }} ">
     <link rel="stylesheet" href="{{ url('public/assets-front/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ url('public/assets-front/css/bootstrap.min.css') }} ">
@@ -44,8 +45,6 @@
     @include('front.layouts.newsletter')
 
 
-
-    <!-- Plugins JS File -->
     <script src="{{ url('public/assets-front/js/jquery.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/bootstrap.bundle.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/jquery.hoverIntent.min.js') }} "></script>
