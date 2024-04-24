@@ -60,8 +60,7 @@
                             <a href="{{ url('/') }}" class="sf-with-ul123">Home</a>
                         </li>
                         <li>
-                            <a href="javascript:" class="sf-with-ul">Shop</a>
-
+                            <a href="javascript:" class="sf-with-ul">product</a>
                             <div class="megamenu megamenu-md">
                                 <div class="row no-gutters">
                                     <div class="col-md-12">
@@ -91,26 +90,18 @@
                             </div>
                         </li>
                         <li>
-                            <a href="javascript:" class="sf-with-ul">Product</a>
-
-                            <div class="megamenu megamenu-sm">
-                                <div class="row no-gutters">
-                                    <div class="col-md-6">
-                                        <div class="menu-col">
-                                            <div class="menu-title">Product Details</div>
-                                            <ul>
-                                                <li><a href="product.html">Default</a></li>
-                                                <li><a href="product-sticky.html">Sticky Info</a></li>
-                                                <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="javascript:" class="sf-with-ul">Category</a>
+                            <ul>
+                                @php
+                                    $category = App\Models\Category::getActiveCategory();
+                                @endphp
+                                @foreach ($category as $cat)
+                                <li><a href="{{ $cat->slug }}">{{ $cat->name }}</a></li>
+                                @endforeach
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ url('blog') }}" class="sf-with-ul">Blog</a>
-
                             <ul>
                                 <li><a href="blog.html">Classic</a></li>
                                 <li><a href="blog-listing.html">Listing</a></li>
