@@ -92,5 +92,14 @@ Route::get('/', [FrontController::class, 'index']);
 Route::get('about', [FrontController::class,'about']);
 Route::get('contact', [FrontController::class,'contact']);
 Route::get('blog', [FrontController::class,'blog']);
+Route::get('rayment-method', [FrontController::class,'payment_method']);
+Route::get('money-back-guarantee', [FrontController::class,'money_back_guarantee']);
+Route::get('returns', [FrontController::class,'returns']);
+Route::get('cart', [FrontController::class,'cart']);
+Route::get('wishlist', [FrontController::class,'wishlist']);
+Route::get('track-order', [FrontController::class,'track_order']);
+Route::get('terms-and-conditions', [FrontController::class,'terms_conditions']);
+Route::get('privacy-policy', [FrontController::class,'privacy_policy']);
+
 Route::post('filter_product', [ProductFront::class,'filterProduct']);
 Route::get('{slug?}/{subslug?}', [ProductFront::class,'getCategory']);

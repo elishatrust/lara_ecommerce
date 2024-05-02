@@ -65,7 +65,119 @@ class FrontController extends Controller
         }
     }
 
-    
+    public function privacy_policy()
+    {
+        $meta_title = 'LaraShop | E-commerce | Privacy Policy';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.privacy-policy', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function terms_conditions()
+    {
+        $meta_title = 'LaraShop | E-commerce | Terms And Conditions';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.terms-and-conditions', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function track_order()
+    {
+        $meta_title = 'LaraShop | E-commerce | Track Order';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.track-order', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function payment_method()
+    {
+        $meta_title = 'LaraShop | E-commerce | Payment Methods';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.payment-method', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function money_back_guarantee()
+    {
+        $meta_title = 'LaraShop | E-commerce | Money Back Guarantee';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.money-back-guarantee', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function returns()
+    {
+        $meta_title = 'LaraShop | E-commerce | Returns';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.returns', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function cart()
+    {
+        $meta_title = 'LaraShop | E-commerce | Cart';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.cart', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function wishlist()
+    {
+        $meta_title = 'LaraShop | E-commerce | Wishlist';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.wishlist', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
