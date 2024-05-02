@@ -1364,10 +1364,7 @@
             </div><!-- End .row -->
         </div><!-- End .container -->
     </div><!-- End .cta -->
-</main><!-- End .main -->
-
-
-
+</main>
 
 
 @endsection

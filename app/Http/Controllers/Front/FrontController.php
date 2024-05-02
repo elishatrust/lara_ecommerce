@@ -12,10 +12,60 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'E-Commerce';
-        return view('front.index', $data );
+        $meta_title = 'LaraShop | E-commerce';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.index', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+    public function blog()
+    {
+        $meta_title = 'LaraShop | E-commerce | Blog';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.blog', $data );
+
+        }else{
+            abort(404);
+        }
     }
 
+    public function contact()
+    {
+        $meta_title = 'LaraShop | E-commerce | Contact Us';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.contact', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    public function about()
+    {
+        $meta_title = 'LaraShop | E-commerce | About Us';
+
+        if(!empty($meta_title))
+        {
+            $data['meta_title'] = $meta_title;
+            return view('front.pages.about', $data );
+
+        }else{
+            abort(404);
+        }
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      */

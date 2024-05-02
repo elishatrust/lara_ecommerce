@@ -10,10 +10,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\ProductController as ProductFront;
 use Illuminate\Support\Facades\Route;
 
-## Front Routes
-Route::get('/', [FrontController::class, 'index']);
+
 
 ## Authentication
 Route::get('admin/', [AuthController::class, 'index'])->name('admin');
@@ -85,3 +85,12 @@ Route::group(['middleware' => 'admin'], function(){
 
 
 });
+
+
+## Frontend Routes
+Route::get('/', [FrontController::class, 'index']);
+Route::get('about', [FrontController::class,'about']);
+Route::get('contact', [FrontController::class,'contact']);
+Route::get('blog', [FrontController::class,'blog']);
+Route::post('filter_product', [ProductFront::class,'filterProduct']);
+Route::get('{slug?}/{subslug?}', [ProductFront::class,'getCategory']);

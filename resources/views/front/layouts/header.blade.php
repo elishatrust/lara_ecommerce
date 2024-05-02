@@ -70,18 +70,16 @@
                                                     $category = App\Models\Category::getActiveCategory();
                                                 @endphp
                                                 @foreach ($category as $cat)
-                                                @php
-                                                    $sub_category = App\Models\SubCategory::selectSubCategory($cat->id);
-                                                @endphp
-                                                <div class="col-md-6">
-                                                    <div class="menu-title"><a href="{{ url($cat->slug) }}">{{ $cat->name }}</a></div>
-                                                    <ul>
-                                                        @foreach ($sub_category as $sub_cat)
-                                                        <li><a href="{{ url($cat->slug.'/'.$sub_cat->slug)}}">{{ $sub_cat->name }}</a></li>
-                                                        @endforeach
-                                                        <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
-                                                    </ul>
-                                                </div>
+                                                    @if (!empty($cat->getActiveSubCategory->count()))
+                                                        <div class="col-md-6">
+                                                            <div class="menu-title"><a href="{{ url($cat->slug) }}">{{ $cat->name }}</a></div>
+                                                            <ul>
+                                                                @foreach ($cat->getActiveSubCategory as $sub_cat)
+                                                                <li><a href="{{ url($cat->slug.'/'.$sub_cat->slug)}}">{{ $sub_cat->name }}</a></li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
@@ -101,12 +99,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ url('blog') }}" class="sf-with-ul">Blog</a>
-                            <ul>
-                                <li><a href="blog.html">Classic</a></li>
-                                <li><a href="blog-listing.html">Listing</a></li>
-                                <li><a href="single.html">Default with sidebar</a></li>
-                            </ul>
+                            <a href="{{ url('blog') }}" class="sf-with-ul123">Blog</a>
                         </li>
                     </ul>
                 </nav>

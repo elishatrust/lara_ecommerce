@@ -4,21 +4,28 @@
             <div class="row no-gutters bg-white newsletter-popup-content">
                 <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                     <div class="banner-content text-center">
-                        <img src="{{ asset('public/assets-front/images/popup/newsletter/logo.png') }}" class="logo" alt="logo" width="60" height="15">
+                        {{-- <img src="{{ asset('public/assets-front/images/popup/newsletter/logo.png') }}" class="logo" alt="logo" width="60" height="15"> --}}
+                        <a href="{{ url('/') }}" class="logo">
+                            <h5 class="mt-2">
+                                <span style="color:#007bff;">LARA </span>
+                                <span style="color:#ff0000;">SHOP</span>
+                            </h5>
+                        </a>
+
                         <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
-                        <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite products.</p>
+                        <p>Subscribe to the LaraShop e-Commerce newsletter to receive timely updates from your favorite products.</p>
                         <form action="#">
                             <div class="input-group input-group-round">
-                                <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
+                                <input type="email" class="form-control form-control-white" placeholder="Enter your email" aria-label="Email Adress" required>
                                 <div class="input-group-append">
                                     <button class="btn" type="submit"><span>go</span></button>
-                                </div><!-- .End .input-group-append -->
-                            </div><!-- .End .input-group -->
+                                </div>
+                            </div>
                         </form>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
                             <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
-                        </div><!-- End .custom-checkbox -->
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-2-5col col-lg-5 ">

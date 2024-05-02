@@ -26,4 +26,13 @@ class SubCategory extends Model
     {
         return static::where('id', $id)->update(['archive' => 1]);
     }
+    static public function getSingleSlug($slug)
+    {
+        return SubCategory::where('slug', $slug)->where('status', 0)->where('archive', 0)->first();
+    }
+
+    public function countProduct()
+    {
+        return $this->hasMany(Product::class, 'sub_category_id')->where('status',0)->where('archive',0)->count();
+    }
 }

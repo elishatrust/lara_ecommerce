@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="" content="">
-    <title>{{ !empty($title) ? Str::upper($title) : "" }}</title>
+
+    <title>{{ !empty($meta_title) ? Str::upper($meta_title) : "" }}</title>
+    @if (!empty($meta_keyword))
+    <meta name="keywords" content="{{ $meta_keyword }}">
+    @endif
+    @if (!empty($meta_description))
+    <meta name="description" content="{{ $meta_description }}">
+    @endif
 
     <link rel="shortcut icon" href="{{ url('public/assets-front/images/icons/favicon.ico') }} ">
     <link rel="stylesheet" href="{{ url('public/assets-front/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
@@ -15,6 +21,11 @@
     <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/magnific-popup/magnific-popup.css') }} ">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ url('public/assets-front/css/style.css') }} ">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/nouislider/nouislider.css') }} ">
+
+
+    <script src="{{ url('public/assets-front/js/jquery.min.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/bootstrap.bundle.min.js') }} "></script>
 
 </head>
 
@@ -42,16 +53,17 @@
 
 
     <!-- NewsLetter -->
-    @include('front.layouts.newsletter')
+    {{-- @include('front.layouts.newsletter') --}}
 
 
-    <script src="{{ url('public/assets-front/js/jquery.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/bootstrap.bundle.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/jquery.hoverIntent.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/jquery.waypoints.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/superfish.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/owl.carousel.min.js') }} "></script>
     <script src="{{ url('public/assets-front/js/jquery.magnific-popup.min.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/wNumb.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/bootstrap-input-spinner.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/nouislider.min.js') }} "></script>
     <!-- Main JS File -->
     <script src="{{ url('public/assets-front/js/main.js') }} "></script>
 
