@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         $showProduct = Product::showProduct();
 
-        // dd($showProduct);
+        dd($showProduct);
     }
 
 }

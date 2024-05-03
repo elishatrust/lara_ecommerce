@@ -11,7 +11,7 @@ class SubCategory extends Model
     protected $table = 'sub_category';
     static function getSubCategory()
     {
-        return SubCategory::select('sub_category.*')->where('archive', 0)->orderBy('id','desc')->get();
+        return SubCategory::select('sub_category.*')->where('status', 0)->where('archive', 0)->orderBy('id','desc')->get();
     }
     static function selectSubCategory($category_id)
     {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\ProductController as ProductFront;
@@ -79,6 +80,15 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/color/edit/{id}', [ColorController::class, 'edit']);
     Route::post('admin/color/edit/{id}', [ColorController::class, 'update']);
     Route::get('admin/color/delete/{id}', [ColorController::class, 'delete']);
+
+
+    ## Blog
+    Route::get('admin/blog/list', [BlogController::class, 'list']);
+    Route::get('admin/blog/add', [BlogController::class, 'add']);
+    Route::post('admin/blog/add', [BlogController::class, 'save']);
+    Route::get('admin/blog/edit/{id}', [BlogController::class, 'edit']);
+    Route::post('admin/blog/edit/{id}', [BlogController::class, 'update']);
+    Route::get('admin/blog/delete/{id}', [BlogController::class, 'delete']);
 
     ## Users
     Route::get('admin/users/list', [UserController::class, 'list']);

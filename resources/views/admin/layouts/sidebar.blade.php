@@ -20,92 +20,80 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
-            <a href="{{ url('admin/dashboard')}}" class="nav-link  @if (Request::segment(2)=='dashboard') active  @endif">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                Dashboard
-                </p>
-            </a>
+                <a href="{{ url('admin/dashboard')}}" class="nav-link  @if (Request::segment(2)=='dashboard') active  @endif">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>Dashboard</p>
+                </a>
             </li>
 
             <li class="nav-item">
-            <a href="{{url('admin/admin/list')}}" class="nav-link @if (Request::segment(2)=='admin') active  @endif ">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                Admin
-                </p>
-            </a>
+                <a href="{{url('admin/admin/list')}}" class="nav-link @if (Request::segment(2)=='admin') active  @endif ">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p> Admin</p>
+                </a>
             </li>
 
             <li class="nav-item">
-            <a href="{{ url('admin/users/list')}} " class="nav-link @if (Request::segment(2)=='users') active  @endif ">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                Users
-                </p>
-            </a>
+                <a href="{{ url('admin/users/list')}} " class="nav-link @if (Request::segment(2)=='users') active  @endif ">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Users</p>
+                </a>
             </li>
 
             <li class="nav-item">
             <a href="{{ url('admin/category/list')}}" class="nav-link @if (Request::segment(2)=='category') active  @endif ">
                 <i class="nav-icon fas fa-circle"></i>
-                <p>
-                Category
-                </p>
+                <p>Category</p>
             </a>
             </li>
 
             <li class="nav-item">
                 <a href="{{ url('admin/sub_category/list')}}" class="nav-link @if (Request::segment(2)=='sub_category') active  @endif ">
                 <i class="nav-icon fas fa-circle"></i>
-                <p>
-                    Sub Category
-                </p>
+                <p>Sub Category</p>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a href="{{ url('admin/brand/list')}}" class="nav-link @if (Request::segment(2)=='brand') active  @endif ">
                 <i class="nav-icon fas fa-th"></i>
-                <p>
-                    Brand
-                </p>
+                <p>Brand</p>
                 </a>
             </li>
 
             <li class="nav-item">
             <a href="{{ url('admin/product/list')}}" class="nav-link @if (Request::segment(2)=='product') active  @endif ">
                 <i class="nav-icon fas fa-shopping-cart"></i>
-                <p>
-                Products
-                </p>
+                <p>Products</p>
             </a>
             </li>
 
             <li class="nav-item">
                 <a href="{{ url('admin/color/list')}}" class="nav-link @if (Request::segment(2)=='color') active  @endif ">
                 <i class="nav-icon fas fa-brush"></i>
-                <p>
-                    Colors
-                </p>
+                <p>Colors</p>
+                </a>
+            </li>
+
+            <li class="nav-header">PAGES</li>
+
+            <li class="nav-item">
+                <a href="{{ url('admin/blog/list')}}" class="nav-link @if (Request::segment(2)=='blog') active  @endif ">
+                <i class="nav-icon far fa-image"></i> <p> Blog</p>
                 </a>
             </li>
 
             <li class="nav-header">MISCELLANEOUS</li>
             <li class="nav-item">
-            <a href="{{ url('admin/user/profile')}}" class="nav-link @if (Request::segment(2)=='user') active  @endif ">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                Profile
-                </p>
-            </a>
+                <a href="{{ url('admin/user/profile')}}" class="nav-link @if (Request::segment(2)=='user') active  @endif ">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p> Profile</p>
+                </a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('admin/logout')}}" class="nav-link">
                 <i class="nav-icon fas fa-power-off"></i>
-                <p>
-                    Logout
-                </p>
+                <p>Logout</p>
                 </a>
             </li>
 
