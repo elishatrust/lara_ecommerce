@@ -61,64 +61,70 @@
                         </div>
                     </div>
 
-                    <div class="products mb-3">
-                        <div class="row justify-content-center">
-                            @foreach ($showProduct as $product)
-                            @php
-                                $productImage = $product->productImage($product->id)
-                            @endphp
-                            <div class="col-12 col-md-4 col-lg-4">
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <span class="product-label label-new">New</span>
-                                        @if (!empty($productImage) && !empty($productImage->listImage()))
-                                        <a href="{{ url($product->category_slug)}}">
-                                            <img style="height:280px;width:100%;object-fit:cover;" src="{{ $productImage->listImage() }}" alt="{{ $product->title }}" class="product-image">
-                                        </a>
-                                        @endif
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                        </div>
-                                    </figure>
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="{{ url($product->category_slug.'/'.$product->sub_category_slug) }}">{{ $product->category_name }}</a>
-                                        </div>
-                                        <h3 class="product-title"><a href="{{ url($product->slug) }}">{{ $product->title }}</a></h3>
-                                        <div class="product-price">
-                                            {{ number_format($product->price, 2) }}TZS
-                                        </div>
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 20%;"></div>
+                    <div id="getProductAjax">
+                        {{-- <div class="products mb-3">
+                            <div class="row justify-content-center">
+                                @foreach ($showProduct as $product)
+                                @php
+                                    $productImage = $product->productImage($product->id)
+                                @endphp
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <div class="product product-7 text-center">
+                                        <figure class="product-media">
+                                            <span class="product-label label-new">New</span>
+                                            @if (!empty($productImage) && !empty($productImage->listImage()))
+                                            <a href="{{ url($product->category_slug)}}">
+                                                <img style="height:280px;width:100%;object-fit:cover;" src="{{ $productImage->listImage() }}" alt="{{ $product->title }}" class="product-image">
+                                            </a>
+                                            @endif
+                                            <div class="product-action-vertical">
+                                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
                                             </div>
-                                            <span class="ratings-text">( 2 Reviews )</span>
+                                        </figure>
+
+                                        <div class="product-body">
+                                            <div class="product-cat">
+                                                <a href="{{ url($product->category_slug.'/'.$product->sub_category_slug) }}">{{ $product->category_name }}</a>
+                                            </div>
+                                            <h3 class="product-title"><a href="{{ url($product->slug) }}">{{ $product->title }}</a></h3>
+                                            <div class="product-price">
+                                                {{ number_format($product->price, 2) }}TZS
+                                            </div>
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 20%;"></div>
+                                                </div>
+                                                <span class="ratings-text">( 2 Reviews )</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                @endforeach
+
                             </div>
-
-                            @endforeach
-
                         </div>
-                    </div>
 
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            {!! $showProduct->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                        </ul>
-                    </nav>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                {!! $showProduct->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+                            </ul>
+                        </nav> --}}
+
+                        @include('front.product._list');
+                    </div>
 
                 </div>
                 <aside class="col-lg-3 order-lg-first">
 
                     <form id="filterForm" action="" method="post">
                         @csrf
-                        <input type="text" name="category_id" id="get_category_id">
+                        <input type="text" name="sub_category_id" id="get_subcategory_id">
                         <input type="text" name="brand_id" id="get_brand_id">
                         <input type="text" name="color_id" id="get_color_id">
                         <input type="text" name="sortBy_id" id="get_sortBy_id">
+                        <input type="text" name="start_price" id="get_start_price">
+                        <input type="text" name="end_price" id="get_end_price">
                     </form>
                     <div class="sidebar sidebar-shop">
                         <div class="widget widget-clean">
@@ -277,8 +283,45 @@
 
 
 
+<script src="{{ url('public/assets-front/js/wNumb.js') }}"></script>
+<script src="{{ url('public/assets-front/js/bootstrap-input-spinner.js') }}"></script>
+<script src="{{ url('public/assets-front/js/nouislider.min.js') }}"></script>
 
 <script>
+
+$(document).ready(function () {
+
+// Filter Price
+if ( typeof noUiSlider === 'object' ) {
+    var priceSlider  = document.getElementById('price-slider');
+
+    noUiSlider.create(priceSlider, {
+        start: [ 0, 10000 ],
+        connect: true,
+        step: 100,
+        margin: 200,
+        range: {
+            'min': 0,
+            'max': 15000
+        },
+        tooltips: true,
+        format: wNumb({
+            decimals: 0,
+            prefix: 'TZS '
+        })
+    });
+
+    priceSlider.noUiSlider.on('update', function( values, handle ){
+        var start_price = values[0];
+        var end_price = values[1];
+
+        $('#get_start_price').val(start_price);
+        $('#get_end_price').val(end_price);
+        $('#filter-price-range').text(values.join(' - '));
+        filterProduct();
+    });
+}
+
 
 // Filter Sortby
 $('.changeSortBy').change(function (e) {
@@ -300,7 +343,7 @@ $('.changeCategory').change(function (e) {
             ids += id+',';
         }
     });
-    $('#get_category_id').val(ids);
+    $('#get_subcategory_id').val(ids);
     filterProduct();
 });
 
@@ -357,6 +400,7 @@ function filterProduct()
         data: $('#filterForm').serialize(),
         dataType: "json",
         success: function (data) {
+            $('#getProductAjax').html(data.success);
 
         },
         error:function(error){
@@ -364,5 +408,9 @@ function filterProduct()
         }
     });
 }
+
+});
+
+
 </script>
 @endsection

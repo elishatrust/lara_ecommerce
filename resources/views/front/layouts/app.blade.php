@@ -13,19 +13,19 @@
     <meta name="description" content="{{ $meta_description }}">
     @endif
 
-    <link rel="shortcut icon" href="{{ url('public/assets-front/images/icons/favicon.ico') }} ">
+    <link rel="shortcut icon" href="{{ url('public/assets-front/images/icons/favicon.ico') }}">
     <link rel="stylesheet" href="{{ url('public/assets-front/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="{{ url('public/assets-front/css/bootstrap.min.css') }} ">
-    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/owl-carousel/owl.carousel.css') }} ">
-    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/magnific-popup/magnific-popup.css') }} ">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/owl-carousel/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/magnific-popup/magnific-popup.css') }}">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="{{ url('public/assets-front/css/style.css') }} ">
-    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/nouislider/nouislider.css') }} ">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/nouislider/nouislider.css') }}">
 
 
-    <script src="{{ url('public/assets-front/js/jquery.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/bootstrap.bundle.min.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/jquery.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/bootstrap.bundle.min.js') }}"></script>
 
 </head>
 
@@ -56,16 +56,16 @@
     {{-- @include('front.layouts.newsletter') --}}
 
 
-    <script src="{{ url('public/assets-front/js/jquery.hoverIntent.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/jquery.waypoints.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/superfish.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/owl.carousel.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/jquery.magnific-popup.min.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/wNumb.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/bootstrap-input-spinner.js') }} "></script>
-    <script src="{{ url('public/assets-front/js/nouislider.min.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/jquery.hoverIntent.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/superfish.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/wNumb.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/bootstrap-input-spinner.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/nouislider.min.js') }}"></script>
     <!-- Main JS File -->
-    <script src="{{ url('public/assets-front/js/main.js') }} "></script>
+    <script src="{{ url('public/assets-front/js/main.js') }}"></script>
 
 
 </body>

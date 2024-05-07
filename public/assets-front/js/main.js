@@ -30,10 +30,10 @@ $(document).ready(function () {
 		e.stopPropagation();
 	});
 
-	// Sticky header 
+	// Sticky header
     var catDropdown = $('.category-dropdown'),
         catInitVal = catDropdown.data('visible');
-        
+
 	if ( $('.sticky-header').length && $(window).width() >= 992 ) {
 		var sticky = new Waypoint.Sticky({
 			element: $('.sticky-header')[0],
@@ -51,7 +51,7 @@ $(document).ready(function () {
                 if ( catDropdown.hasClass('show') ) {
                     catDropdown.removeClass('show').find('.dropdown-menu').removeClass('show');
                     catDropdown.find('.dropdown-toggle').attr('aria-expanded', 'false');
-                } 
+                }
             }
 		});
 	}
@@ -161,53 +161,53 @@ $(document).ready(function () {
         });
     }
 
-    // Slider For category pages / filter price
-    if ( typeof noUiSlider === 'object' ) {
-		var priceSlider  = document.getElementById('price-slider');
+    // // Slider For category pages / filter price
+    // if ( typeof noUiSlider === 'object' ) {
+	// 	var priceSlider  = document.getElementById('price-slider');
 
-		// Check if #price-slider elem is exists if not return
-		// to prevent error logs
-		if (priceSlider == null) return;
+	// 	// Check if #price-slider elem is exists if not return
+	// 	// to prevent error logs
+	// 	if (priceSlider == null) return;
 
-		noUiSlider.create(priceSlider, {
-			start: [ 0, 750 ],
-			connect: true,
-			step: 50,
-			margin: 200,
-			range: {
-				'min': 0,
-				'max': 1000
-			},
-			tooltips: true,
-			format: wNumb({
-		        decimals: 0,
-		        prefix: '$'
-		    })
-		});
+	// 	noUiSlider.create(priceSlider, {
+	// 		start: [ 0, 750 ],
+	// 		connect: true,
+	// 		step: 50,
+	// 		margin: 200,
+	// 		range: {
+	// 			'min': 0,
+	// 			'max': 1000
+	// 		},
+	// 		tooltips: true,
+	// 		format: wNumb({
+	// 	        decimals: 0,
+	// 	        prefix: '$'
+	// 	    })
+	// 	});
 
-		// Update Price Range
-		priceSlider.noUiSlider.on('update', function( values, handle ){
-			$('#filter-price-range').text(values.join(' - '));
-		});
-	}
+	// 	// Update Price Range
+	// 	priceSlider.noUiSlider.on('update', function( values, handle ){
+	// 		$('#filter-price-range').text(values.join(' - '));
+	// 	});
+	// }
 
 	// Product countdown
 	if ( $.fn.countdown ) {
 		$('.product-countdown').each(function () {
-			var $this = $(this), 
+			var $this = $(this),
 				untilDate = $this.data('until'),
 				compact = $this.data('compact'),
                 dateFormat = ( !$this.data('format') ) ? 'DHMS' : $this.data('format'),
-                newLabels = ( !$this.data('labels-short') ) ? 
+                newLabels = ( !$this.data('labels-short') ) ?
                                 ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'] :
                                 ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Mins', 'Secs'],
-                newLabels1 = ( !$this.data('labels-short') ) ? 
+                newLabels1 = ( !$this.data('labels-short') ) ?
                                 ['Year', 'Month', 'Week', 'Day', 'Hour', 'Minute', 'Second'] :
                                 ['Year', 'Month', 'Week', 'Day', 'Hour', 'Min', 'Sec'];
 
             var newDate;
 
-            // Split and created again for ie and edge 
+            // Split and created again for ie and edge
             if ( !$this.data('relative') ) {
                 var untilDateArr = untilDate.split(", "), // data-until 2019, 10, 8 - yy,mm,dd
                     newDate = new Date(untilDateArr[0], untilDateArr[1] - 1, untilDateArr[2]);
@@ -281,8 +281,8 @@ $(document).ready(function () {
                     newOwlSettings = $.extend({}, owlSettings, $this.data('owl-options'));
 
                 $this.owlCarousel(newOwlSettings);
-                
-            });   
+
+            });
         }
     }
 
@@ -327,7 +327,7 @@ $(document).ready(function () {
         });
     }
 
-    // Product Gallery - product-gallery.html 
+    // Product Gallery - product-gallery.html
     if ( $.fn.owlCarousel && $.fn.elevateZoom ) {
         var owlProductGallery = $('.product-gallery-carousel');
 
@@ -382,7 +382,7 @@ $(document).ready(function () {
         });
     }
 
-     // Product Gallery Separeted- product-sticky.html 
+     // Product Gallery Separeted- product-sticky.html
     if ( $.fn.elevateZoom ) {
         $('.product-separated-item').find('img').elevateZoom({
             zoomType: "inner",
@@ -456,7 +456,7 @@ $(document).ready(function () {
             });
         });
 	}
- 
+
 	function isotopeFilter ( filterNav, container) {
 		$(filterNav).find('a').on('click', function(e) {
 			var $this = $(this),
@@ -470,7 +470,7 @@ $(document).ready(function () {
 				filter: filter,
 				transitionDuration: '0.7s'
 			});
-			
+
 			// Add active class
 			$this.closest('li').addClass('active');
 			e.preventDefault();
@@ -518,12 +518,12 @@ $(document).ready(function () {
                 $(this.element).countTo();
             }, {
                 offset: '90%',
-                triggerOnce: true 
+                triggerOnce: true
             });
         } else {
             $countItem.countTo();
-        }    
-    } else { 
+        }
+    } else {
         // fallback
         // Get the data-to value and add it to element
         $countItem.each(function () {
@@ -747,7 +747,7 @@ $(document).ready(function () {
                 }
             }, 0);
         }, 500);
-        
+
         e.preventDefault();
     });
 
