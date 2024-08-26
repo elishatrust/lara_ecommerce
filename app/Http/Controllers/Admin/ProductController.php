@@ -58,7 +58,6 @@ class ProductController extends Controller
 
         $data['brand'] = Brand::getActiveBrand();
         $data['color'] = Color::getActiveColor();
-        // $data['product_color'] = ProductColor::getColor();
         $data['category'] = Category::getActiveCategory();
 
         if(!empty($product))

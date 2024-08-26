@@ -13,6 +13,7 @@
     <meta name="description" content="{{ $meta_description }}">
     @endif
 
+<<<<<<< HEAD
     <link rel="shortcut icon" href="{{ asset('assets-front/images/icons/favicon.ico') }} ">
     <link rel="stylesheet" href="{{ asset('assets-front/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
@@ -26,6 +27,21 @@
 
     <script src="{{ asset('assets-front/js/jquery.min.js') }} "></script>
     <script src="{{ asset('assets-front/js/bootstrap.bundle.min.js') }} "></script>
+=======
+    <link rel="shortcut icon" href="{{ url('public/assets-front/images/icons/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/owl-carousel/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/magnific-popup/magnific-popup.css') }}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('public/assets-front/css/plugins/nouislider/nouislider.css') }}">
+
+
+    <script src="{{ url('public/assets-front/js/jquery.min.js') }}"></script>
+    <script src="{{ url('public/assets-front/js/bootstrap.bundle.min.js') }}"></script>
+>>>>>>> elisha_branch
 
 </head>
 

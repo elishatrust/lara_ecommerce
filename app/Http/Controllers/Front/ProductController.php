@@ -51,9 +51,13 @@ class ProductController extends Controller
 
     public function filterProduct(Request $request)
     {
-        $showProduct = Product::showProduct();
+        $filterProduct = Product::showProduct();
 
-        // dd($showProduct);
+        return response()->json([
+            'status' => true,
+            'success' => view('front.product._list', ['filterProduct' => $filterProduct])->render(),
+        ], 200);
+
     }
 
 }

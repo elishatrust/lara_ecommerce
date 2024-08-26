@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\ProductController as ProductFront;
@@ -81,6 +82,15 @@ Route::group(['middleware' => 'admin'], function(){
     Route::post('admin/color/edit/{id}', [ColorController::class, 'update']);
     Route::get('admin/color/delete/{id}', [ColorController::class, 'delete']);
 
+
+    ## Blog
+    Route::get('admin/blog/list', [BlogController::class, 'list']);
+    Route::get('admin/blog/add', [BlogController::class, 'add']);
+    Route::post('admin/blog/add', [BlogController::class, 'save']);
+    Route::get('admin/blog/edit/{id}', [BlogController::class, 'edit']);
+    Route::post('admin/blog/edit/{id}', [BlogController::class, 'update']);
+    Route::get('admin/blog/delete/{id}', [BlogController::class, 'delete']);
+
     ## Users
     Route::get('admin/users/list', [UserController::class, 'list']);
 
@@ -93,5 +103,14 @@ Route::get('/', [FrontController::class, 'index']);
 Route::get('about', [FrontController::class,'about']);
 Route::get('contact', [FrontController::class,'contact']);
 Route::get('blog', [FrontController::class,'blog']);
+Route::get('rayment-method', [FrontController::class,'payment_method']);
+Route::get('money-back-guarantee', [FrontController::class,'money_back_guarantee']);
+Route::get('returns', [FrontController::class,'returns']);
+Route::get('cart', [FrontController::class,'cart']);
+Route::get('wishlist', [FrontController::class,'wishlist']);
+Route::get('track-order', [FrontController::class,'track_order']);
+Route::get('terms-and-conditions', [FrontController::class,'terms_conditions']);
+Route::get('privacy-policy', [FrontController::class,'privacy_policy']);
+
 Route::post('filter_product', [ProductFront::class,'filterProduct']);
 Route::get('{slug?}/{subslug?}', [ProductFront::class,'getCategory']);
